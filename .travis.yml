@@ -1,0 +1,19 @@
+language: rust
+os:
+  - linux
+  - osx
+addons:
+  apt:
+    packages:
+      - libsndio-dev
+script:
+  - cargo test --release --verbose
+  - cargo build --release --verbose
+before_cache:
+  - rm -rf /home/travis/.cargo/git
+  - rm -rf /home/travis/.cargo/registry
+  - rm -rf /home/travis/.cargo/bin/wasm-pack
+  - rm -f  target/.rustc_info.json
+cache:
+  directories:
+    - /home/travis/.cargo
